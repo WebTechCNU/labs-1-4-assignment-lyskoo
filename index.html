@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Todo List</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <h1>Todo List</h1>
+
+    <section id="addTodoSection">
+      <input type="text" id="todoInput" placeholder="Введіть назву завдання..." />
+      <select id="categorySelect" aria-label="Оберіть категорію для нового завдання">
+        <option value="">Оберіть категорію</option>
+      </select>
+      <button id="addTodoBtn">Додати</button>
+    </section>
+
+    <section id="filters">
+      <select id="filterCategorySelect" aria-label="Фільтр за категорією">
+        <option value="">Всі категорії</option>
+      </select>
+
+      <select id="filterDoneSelect" aria-label="Фільтр за статусом">
+        <option value="">Всі</option>
+        <option value="done">Виконані</option>
+        <option value="notdone">Не виконані</option>
+      </select>
+    </section>
+
+    <ul id="todosList" aria-live="polite" aria-label="Список завдань"></ul>
+
+    <section id="pagination">
+      <button id="prevPageBtn" aria-label="Попередня сторінка">Попередня</button>
+      <span id="pageInfo" aria-live="polite">Сторінка 1</span>
+      <button id="nextPageBtn" aria-label="Наступна сторінка">Наступна</button>
+    </section>
+  </div>
+
+  <!-- Модальне вікно редагування -->
+  <div id="editModal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+    <div id="editModalContent">
+      <h2 id="editModalTitle" style="margin-bottom:10px; color:#007acc;">Редагувати завдання</h2>
+
+      <label for="editTodoInput">Назва</label>
+      <input type="text" id="editTodoInput" />
+
+      <label for="editCategorySelect">Категорія</label>
+      <select id="editCategorySelect">
+        <option value="">Оберіть категорію</option>
+      </select>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="editDoneCheckbox" />
+        <label for="editDoneCheckbox">Виконано</label>
+      </div>
+
+      <div id="editButtons">
+        <button id="saveEditBtn">Зберегти</button>
+        <button id="cancelEditBtn">Скасувати</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

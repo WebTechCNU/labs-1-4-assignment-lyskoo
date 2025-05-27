@@ -1,0 +1,273 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f7f9fc;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+#app {
+  background: #fff;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  padding: 20px 30px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #007acc;
+}
+
+/* Форма додавання */
+#addTodoSection {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+#todoInput, select {
+  flex: 1 1 auto;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.2s;
+}
+
+#todoInput:focus, select:focus {
+  outline: none;
+  border-color: #007acc;
+  box-shadow: 0 0 5px #007acc66;
+}
+
+#addTodoBtn {
+  background-color: #007acc;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  flex-shrink: 0;
+}
+
+#addTodoBtn:hover {
+  background-color: #005fa3;
+}
+
+#filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+#filters select {
+  flex: 1 1 auto;
+  padding: 8px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+#filters select:focus {
+  outline: none;
+  border-color: #007acc;
+  box-shadow: 0 0 5px #007acc66;
+}
+
+/* Список завдань */
+#todosList {
+  list-style: none;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+#todosList li {
+  background: #f0f5fa;
+  margin-bottom: 10px;
+  padding: 12px 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: #222;
+  word-break: break-word;
+}
+
+#todosList li.done {
+  color: #4caf50;
+  text-decoration: line-through;
+}
+
+#todosList li button {
+  background: #007acc;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  margin-left: 5px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#todosList li button:hover {
+  background: #005fa3;
+}
+
+/* Пагінація */
+#pagination {
+  margin-top: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+#pagination button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: 1.5px solid #007acc;
+  background: white;
+  color: #007acc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-width: 70px;
+}
+
+#pagination button:disabled {
+  border-color: #bbb;
+  color: #bbb;
+  cursor: default;
+}
+
+#pagination button:not(:disabled):hover {
+  background-color: #007acc;
+  color: white;
+}
+
+#pageInfo {
+  font-weight: 600;
+  color: #007acc;
+  min-width: 90px;
+}
+
+/* Модальне вікно редагування */
+#editModal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 15px;
+}
+
+#editModalContent {
+  background: white;
+  border-radius: 8px;
+  padding: 20px 25px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#editModalContent label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+#editModalContent input[type="text"],
+#editModalContent select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 5px;
+  border: 1.5px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+#editModalContent input[type="text"]:focus,
+#editModalContent select:focus {
+  border-color: #007acc;
+  outline: none;
+  box-shadow: 0 0 5px #007acc66;
+}
+
+#editModalContent .checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #444;
+}
+
+#editModalContent button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 1;
+}
+
+#saveEditBtn {
+  background-color: #4caf50;
+  color: white;
+}
+
+#saveEditBtn:hover {
+  background-color: #3b9a39;
+}
+
+#cancelEditBtn {
+  background-color: #d9534f;
+  color: white;
+}
+
+#cancelEditBtn:hover {
+  background-color: #b6342e;
+}
+
+#editButtons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Scrollbar для списку */
+#todosList::-webkit-scrollbar {
+  width: 8px;
+}
+
+#todosList::-webkit-scrollbar-thumb {
+  background-color: #007acc66;
+  border-radius: 4px;
+}
